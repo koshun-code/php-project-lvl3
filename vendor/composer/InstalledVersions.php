@@ -25,13 +25,13 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.23',
-    'version' => '8.5.23.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
-    'name' => 'laravel/laravel',
+    'reference' => 'b0aa7489b90188edfb6595e8d84842c5dcfbe069',
+    'name' => 'hexlet/code',
   ),
   'versions' => 
   array (
@@ -228,6 +228,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
+    ),
+    'hexlet/code' => 
+    array (
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b0aa7489b90188edfb6595e8d84842c5dcfbe069',
     ),
     'illuminate/auth' => 
     array (
@@ -461,15 +470,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '5df423c2790f32b26baee90518bb659572aa404f',
-    ),
-    'laravel/laravel' => 
-    array (
-      'pretty_version' => 'v8.5.23',
-      'version' => '8.5.23.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => NULL,
     ),
     'laravel/sail' => 
     array (
@@ -827,8 +827,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1026,6 +1026,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'squizlabs/php_codesniffer' => 
+    array (
+      'pretty_version' => '3.6.0',
+      'version' => '3.6.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ffced0d2c8fa8e6cdc4d695a743271fab6c38625',
     ),
     'swiftmailer/swiftmailer' => 
     array (
