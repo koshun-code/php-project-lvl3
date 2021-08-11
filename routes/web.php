@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('chanks.index');
 });
-Route::post('urls', [UrlController::class, 'index'])->name('urls.index');
+
+Route::post('urls', [UrlController::class, 'store'])->name('urls.store');
 
 Route::get('urls', [UrlController::class, 'show'])->name('urls.show');
 

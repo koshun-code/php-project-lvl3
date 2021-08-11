@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class UrlController extends Controller
 {
-    public function index()
+    public function store(Request $request)
     {
-        return 'hello';
+        
     }
     public function show()
     {
