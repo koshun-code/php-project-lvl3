@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b0aa7489b90188edfb6595e8d84842c5dcfbe069',
+    'reference' => 'd983c6bc2304a6442393153152e6ba4ac84f4d40',
     'name' => 'hexlet/code',
   ),
   'versions' => 
@@ -236,7 +236,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b0aa7489b90188edfb6595e8d84842c5dcfbe069',
+      'reference' => 'd983c6bc2304a6442393153152e6ba4ac84f4d40',
     ),
     'illuminate/auth' => 
     array (
@@ -488,6 +488,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '04ad32c1a3328081097a181875733fa51f402083',
+    ),
+    'laravelcollective/html' => 
+    array (
+      'pretty_version' => 'v6.2.1',
+      'version' => '6.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ae15b9c4bf918ec3a78f092b8555551dd693fde3',
     ),
     'league/commonmark' => 
     array (

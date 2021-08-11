@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('chanks.index');
 });
-Route::get('/urls', function() {
-    return view('layouts.app');
-});
+Route::post('urls', [UrlController::class, 'index'])->name('urls.index');
+
+Route::get('urls', [UrlController::class, 'show'])->name('urls.show');
+
