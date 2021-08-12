@@ -9,9 +9,9 @@
                     <h1 class="display-3">Анализатор страниц</h1>
                     <p class="lead">Бесплатно проверяйте сайты на SEO пригодность</p>
 
-                    {{Form::open(['url' => route('urls.index'), 'method' => 'POST', 'class' => 'd-flex justify-content-center'])}}
+                    {{Form::open(['url' => route('urls.store'), 'method' => 'POST', 'class' => 'd-flex justify-content-center'])}}
 
-                    {{Form::text('url[name]', 'https://www.example.com', ['class' =>'form-control form-control-lg', 'placeholder' => 'https://www.example.com'])}}
+                    {{Form::text('url[name]', '', ['class' =>'form-control form-control-lg', 'placeholder' => 'https://www.example.com'])}}
 
                     {{Form::submit('Проверить', ['class' => 'btn btn-lg btn-primary ml-3 px-5 text-uppercase'])}}
                     {{Form::close()}}

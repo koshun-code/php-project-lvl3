@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('chanks.index');
 });
 
-Route::post('urls', [UrlController::class, 'store'])->name('urls.store');
+Route::post('urls', [App\Http\Controllers\UrlController::class, 'store'])->name('urls.store');
 
-Route::get('urls', [UrlController::class, 'show'])->name('urls.show');
+Route::get('urls', [App\Http\Controllers\UrlController::class, 'show'])->name('urls.show');
 
+Route::get('urls/{id}', [App\Http\Controllers\UrlController::class, 'site'])->name('urls.site');
