@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('chanks.index');
-});
+})->name('chanks.index');
 
 Route::post('urls', [App\Http\Controllers\UrlController::class, 'store'])->name('urls.store');
 

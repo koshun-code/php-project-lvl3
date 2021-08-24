@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd983c6bc2304a6442393153152e6ba4ac84f4d40',
+    'reference' => '83a8d6c8b5d231fcdce4b4c83be7bbcbbf94c918',
     'name' => 'hexlet/code',
   ),
   'versions' => 
@@ -212,7 +212,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd983c6bc2304a6442393153152e6ba4ac84f4d40',
+      'reference' => '83a8d6c8b5d231fcdce4b4c83be7bbcbbf94c918',
     ),
     'illuminate/auth' => 
     array (
@@ -550,12 +550,12 @@
     ),
     'nesbot/carbon' => 
     array (
-      'pretty_version' => '2.51.1',
-      'version' => '2.51.1.0',
+      'pretty_version' => '2.52.0',
+      'version' => '2.52.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922',
+      'reference' => '369c0e2737c56a0f39c946dd261855255a6fccbe',
     ),
     'nette/schema' => 
     array (
