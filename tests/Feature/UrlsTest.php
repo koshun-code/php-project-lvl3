@@ -6,20 +6,24 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Url;
-use Illuminate\Support\Arr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UrlsTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
      * @return void
      */
+    private $urls;
+
     protected function setUp():void
     {
         parent::setUp();
+        $this->urls = Url::factory()->create();
 
-        Url::factory()->count(2)->make();
     }
     public function test_example()
     {
@@ -39,14 +43,14 @@ class UrlsTest extends TestCase
     }
     public function testSite()
     {
-        $urls = Url::factory()->create();
-        $response = $this->get(route('urls.site', [$urls]));
+        $response = $this->get(route('urls.site', $this->urls['id']));
         $response->assertOk();
     }
     public function testStore()
     {
-        $urls = Url::factory()->make();
-        $response = $this->post(route('urls.store', [$urls]));
+        $urlData = ['url[name]'=>'http://test.com'];
+        $response = $this->post(route('urls.store', $urlData));
         $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
     }
 }

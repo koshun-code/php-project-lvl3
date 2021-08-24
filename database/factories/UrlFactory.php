@@ -22,6 +22,7 @@ class UrlFactory extends Factory
     public function definition()
     {
         return [
+            //'id'=> '',
             'name' => $this->faker->url(),
             'updated_at' => $this->faker->dateTime(),
             'created_at' => $this->faker->dateTime(),
