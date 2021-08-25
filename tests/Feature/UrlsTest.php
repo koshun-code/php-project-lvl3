@@ -48,9 +48,38 @@ class UrlsTest extends TestCase
     }
     public function testStore()
     {
-        $urlData = ['url[name]'=>'http://test.com'];
+        $urlData = ['url[name]'=>$this->urls['name']];
         $response = $this->post(route('urls.store', $urlData));
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
+    }
+    public function testStoreEmpty()
+    {
+        $urlData = ['url[name]'=>''];
+        $response = $this->post(route('urls.store', $urlData));
+        $response->assertRedirect();
+        $response->assertSessionHasErrors();
+    }
+    public function testStoreExistLink()
+    {
+        $url = DB::table('urls')->insertGetId([
+            'name' => 'http://test.com',
+            'updated_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+        ]);
+        $curUrl = 'http://test.com';
+        $response = $this->post(route('urls.store', $curUrl));
+        //dd($response);
+        $response->assertSessionHasErrors();
+        $response->assertRedirect();
+        
+    }
+    public function testToLong()
+    {
+        $urlData = str_repeat('domain', 50);
+        $url = "http://{$urlData}.com";
+        $response = $this->post(route('urls.store', $url));
+        $response->assertSessionHasErrors();
+        $response->assertRedirect();
     }
 }

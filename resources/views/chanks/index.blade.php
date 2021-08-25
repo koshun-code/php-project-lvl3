@@ -14,7 +14,7 @@
 
                             <!---<button type="button" class="close" data-dismiss="alert">×</button>   --> 
 
-                            <strong>Некорректный URL </strong>
+                            <strong>Некорректный URL</strong>
 
                         </div>
                     @endif
