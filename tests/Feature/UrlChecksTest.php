@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class UrlChecksTest extends TestCase
 {
@@ -32,6 +33,7 @@ class UrlChecksTest extends TestCase
     }
     public function testIndex()
     {
+        HTTP::fake([$this->url => HTTP::response()]);
         $response = $this->post(route('urls.check', ['id' => $this->id]));
         $response->assertRedirect();
         $response->assertSessionHasNoErrors();
