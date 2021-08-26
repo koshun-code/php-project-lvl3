@@ -4,31 +4,32 @@
 <main class="flex-grow-1">
   
 <div class="container-lg">
-        <h1 class="mt-5 mb-3">Сайт: {{$url[0]->name}}</h1>
+        <h1 class="mt-5 mb-3">Сайт: {{$url->name}}</h1>
         <div class="table-responsive">
             <table class="table table-bordered table-hover text-nowrap">
                 <tbody><tr>
                     <td>ID</td>
-                    <td>{{$url[0]->id}}</td>
+                    <td>{{$url->id}}</td>
                 </tr>
                 <tr>
                     <td>Имя</td>
-                    <td>{{$url[0]->name}}</td>
+                    <td>{{$url->name}}</td>
                 </tr>
                 <tr>
                     <td>Дата создания</td>
-                    <td>{{$url[0]->created_at}}</td>
+                    <td>{{$url->created_at}}</td>
                 </tr>
                 <tr>
                     <td>Дата обновления</td>
-                    <td>{{$url[0]->updated_at}}</td>
+                    <td>{{$url->updated_at}}</td>
                 </tr>
             </tbody></table>
         </div>
-       <!-- <h2 class="mt-5 mb-3">Проверки</h2>
-        <form method="post" action="https://php-l3-page-analyzer.herokuapp.com/urls/1/checks">
-            <input type="hidden" name="_token" value="4M6aTTYPEaZE1TOvblHLsVZW9ahUPnx3AMZiHpRd">            <input type="submit" class="btn btn-primary" value="Запустить проверку">
-        </form>
+        <h2 class="mt-5 mb-3">Проверки</h2>
+        {{Form::open(['url' => route('urls.check', ['id' => $url->id]), 'method' => 'POST', ])}}
+        {{Form::submit('Запустить проверку', ["class" => "btn btn-primary mb-4"])}}
+        {{Form::close()}}
+        @if (count($checkedUrl) > 0)
             <table class="table table-bordered table-hover text-nowrap">
                 <tbody><tr>
                     <th>ID</th>
@@ -38,16 +39,19 @@
                     <th>description</th>
                     <th>Дата создания</th>
                 </tr>
-                                    <tr>
-                        <td>614</td>
+                @foreach($checkedUrl as $checkUrl)
+                <tr>
+                        <td>{{$checkUrl->id}}</td>
                         <td>200</td>
                         <td>All-in-one...</td>
                         <td></td>
-                        <td>A new tool that blends your ev...</td>
-                        <td>2021-08-20 20:54:37</td>
+                        <td></td>
+                        <td>{{$checkUrl->updated_at}}</td>
                     </tr>
+                @endforeach
                 </tbody>
-            </table>-->
+            </table>
+        @endif
 </div>
              
 </main>

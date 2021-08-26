@@ -66,8 +66,9 @@ class UrlController extends Controller
      */
     public function site($id)
     {
-        $url = DB::select('select * from urls where id = ?', [$id]);
-        return view('chanks.site', ['url' => $url]);
-       //dump($url);
+        [$url] = DB::select('select * from urls where id = ?', [$id]);
+        $checkedUrl = DB::select('select * from url_checks where url_id = ?', [$id]);// проблема в том, что нет такого id
+        //dd($checkedUrl);
+        return view('chanks.site', compact('url', 'checkedUrl'));
     }
 }
