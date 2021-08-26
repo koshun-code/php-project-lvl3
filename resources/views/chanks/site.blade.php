@@ -42,7 +42,7 @@
                 @foreach($checkedUrl as $checkUrl)
                 <tr>
                         <td>{{$checkUrl->id}}</td>
-                        <td>200</td>
+                        <td>{{$checkUrl->status_code}}</td>
                         <td>All-in-one...</td>
                         <td></td>
                         <td></td>

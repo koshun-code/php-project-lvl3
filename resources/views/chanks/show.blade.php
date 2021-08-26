@@ -19,7 +19,7 @@
                         <td>{{$url->id}}</td>
                         <td><a href="{{route('urls.site', ['id' => $url->id])}}">{{$url->name}}</a></td>
                         <td>{{$url->updated_at}}</td>
-                        <td>200</td>
+                        <td>{{$url->status_code}}</td>
                 </tr>
                 @endforeach
                 </tbody></table>

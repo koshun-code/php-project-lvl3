@@ -58,7 +58,9 @@ class UrlController extends Controller
      */
     public function show()
     {
-        $urls = DB::select('select * from urls');
+        $urls = DB::select('select urls.id as id, name, url_checks.status_code as status_code, urls.updated_at as updated_at  from urls 
+        left join url_checks on urls.id = url_checks.url_id');
+        //dd($urls);
         return view('chanks.show', ['urls' => $urls]);
     }
     /**
@@ -67,8 +69,7 @@ class UrlController extends Controller
     public function site($id)
     {
         [$url] = DB::select('select * from urls where id = ?', [$id]);
-        $checkedUrl = DB::select('select * from url_checks where url_id = ?', [$id]);// проблема в том, что нет такого id
-        //dd($checkedUrl);
+        $checkedUrl = DB::select('select * from url_checks where url_id = ?', [$id]);
         return view('chanks.site', compact('url', 'checkedUrl'));
     }
 }
