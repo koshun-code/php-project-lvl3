@@ -24,12 +24,12 @@ class UrlController extends Controller
             $created_at = Carbon::now('Europe/Moscow');
             if ($this->isUniqueUrl($url)) {
                 DB::insert('insert into urls (name, updated_at, created_at) values (?, ?, ?)', [$url, $updated_at, $created_at]);
-                return redirect()->route('urls.show')->with('success', 'Cсылка добавлена');
+                return redirect()->route('urls.show')->with('success', 'Cсылка добавлена')->withInput();
             } else {
-                return back()->with('warning', 'Такая ссылка уже есть');
+                return back()->with('warning', 'Такая ссылка уже есть')->withInput();
             }
         } else {
-            return back()->with('errors', 'Некоректный URL');
+            return back()->with('errors', 'Некоректный URL')->withInput();
         }
     }
     /**
