@@ -22,7 +22,7 @@ class UrlCheckController extends Controller
         DB::insert('insert into url_checks (url_id, status_code, h1, keywords, description, updated_at, created_at) 
         values (?, ?, ?, ?, ?, ?, ?)', [$urlId, $status, $h1, $keywords, $description, $updated_at, $created_at]);
         DB::update('update urls set updated_at=:updated_at where id=:id', [$updated_at, $urlId]);
-        return redirect()->route('urls.site', $urlId);
+        return redirect()->route('urls.site', $urlId)->with('success', 'Страница успешно проверена ');
     }
     private function getStatuseCode($url)
     {

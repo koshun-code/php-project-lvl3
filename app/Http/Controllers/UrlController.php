@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -12,20 +13,23 @@ class UrlController extends Controller
 {
     public function store(Request $request)
     {
-         $validate = $request->validate([
-             'url.name' => 'required|max:255',
-         ]);
-        $url = $this->normalizeUrl($request);
-        if ($validate) {
+        $inputUrl = $request->input('url');
+        
+        $validator = Validator::make($inputUrl, [
+            'name' => 'required|max:255'
+        ]);
+        if (!$validator->fails()) {
             $url = $this->normalizeUrl($request);
             $updated_at = Carbon::now('Europe/Moscow');
             $created_at = Carbon::now('Europe/Moscow');
             if ($this->isUniqueUrl($url)) {
                 DB::insert('insert into urls (name, updated_at, created_at) values (?, ?, ?)', [$url, $updated_at, $created_at]);
-                return redirect()->route('urls.show')->with('success', 'Link added successfully!');
+                return redirect()->route('urls.show')->with('success', 'Cсылка добавлена');
             } else {
-                return back()->with('error', 'Такая ссылка уже есть');
+                return back()->with('warning', 'Такая ссылка уже есть');
             }
+        } else {
+            return back()->with('error', 'Некоректный URL');
         }
     }
     /**
@@ -40,7 +44,7 @@ class UrlController extends Controller
     /**
      * Cheak url to unique in db
      */
-    private function isUniqueUrl($url)
+    private function isUniqueUrl($url):bool
     {
         $urls = DB::table('urls')
         ->select('name')
