@@ -20,7 +20,7 @@
 
 @endif
 
-@if ($message = Session::get('error'))
+@if ($message = Session::get('errors'))
 
 <div class="alert alert-danger alert-block">
 

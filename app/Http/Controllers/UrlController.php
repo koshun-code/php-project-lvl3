@@ -29,7 +29,7 @@ class UrlController extends Controller
                 return back()->with('warning', 'Такая ссылка уже есть');
             }
         } else {
-            return back()->with('error', 'Некоректный URL');
+            return back()->with('errors', 'Некоректный URL');
         }
     }
     /**
