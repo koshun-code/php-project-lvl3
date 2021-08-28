@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '83a8d6c8b5d231fcdce4b4c83be7bbcbbf94c918',
+    'reference' => '157641e350f3ea6c1ff17f60df3edb2da6b70d17',
     'name' => 'hexlet/code',
   ),
   'versions' => 
@@ -236,7 +236,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '83a8d6c8b5d231fcdce4b4c83be7bbcbbf94c918',
+      'reference' => '157641e350f3ea6c1ff17f60df3edb2da6b70d17',
     ),
     'illuminate/auth' => 
     array (
@@ -454,6 +454,15 @@ private static $installed = array (
       array (
         0 => 'v8.53.1',
       ),
+    ),
+    'imangazaliev/didom' => 
+    array (
+      'pretty_version' => '1.18',
+      'version' => '1.18.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '346db1ea94a0f6ead225c2358af770bf33659cf7',
     ),
     'kodova/hamcrest-php' => 
     array (

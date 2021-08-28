@@ -58,10 +58,10 @@ class UrlController extends Controller
      */
     public function show()
     {
-        $urls = DB::select('select urls.id as id, name, url_checks.status_code as status_code, urls.updated_at as updated_at  from urls 
-        left join url_checks on urls.id = url_checks.url_id');
-        //dd($urls);
-        return view('chanks.show', ['urls' => $urls]);
+        $urls = DB::table('urls')->distinct('urls.id')->leftJoin('url_checks', 'urls.id', '=', 'url_checks.url_id')
+        ->select('urls.id as id', 'name', 'url_checks.status_code as status_code', 'urls.updated_at as updated_at')
+        ->orderBy('id', 'asc')->paginate(15);
+        return view('chanks.show', compact('urls'));
     }
     /**
      * 

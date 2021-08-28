@@ -43,9 +43,9 @@
                 <tr>
                         <td>{{$checkUrl->id}}</td>
                         <td>{{$checkUrl->status_code}}</td>
-                        <td>All-in-one...</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{Str::limit($checkUrl->h1, 30, ' ...') }}</td>
+                        <td>{{Str::limit($checkUrl->keywords, 40, ' ...')}}</td>
+                        <td>{{Str::limit($checkUrl->description, 40, ' ...')}}</td>
                         <td>{{$checkUrl->updated_at}}</td>
                     </tr>
                 @endforeach
