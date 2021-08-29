@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 class UrlsTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -21,7 +22,7 @@ class UrlsTest extends TestCase
     private $url;
     private $id;
 
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         $this->url = 'http://test.com';
@@ -31,7 +32,7 @@ class UrlsTest extends TestCase
             'created_at' => Carbon::now(),
         ]);
     }
-    public function test_example()
+    public function testExample()
     {
         $response = $this->get('/');
 
@@ -61,7 +62,7 @@ class UrlsTest extends TestCase
     }
     public function testStoreEmpty()
     {
-        $urlData = ['url[name]'=>''];
+        $urlData = ['url[name]' => ''];
         $response = $this->post(route('urls.store', $urlData));
         $this->assertDatabaseMissing('urls', $urlData);
         $response->assertRedirect();
@@ -73,7 +74,6 @@ class UrlsTest extends TestCase
         //dd($response);
         //$response->assertSessionHasErrors();
         $response->assertRedirect();
-        
     }
     public function testToLong()
     {

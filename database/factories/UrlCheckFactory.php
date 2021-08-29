@@ -24,7 +24,7 @@ class UrlCheckFactory extends Factory
         return [
             'url_id' => $this->faker->numberBetween(1, 5),
             'updated_at' => $this->faker->dateTime(),
-            'created_at' => $this->faker->dateTime(),            
+            'created_at' => $this->faker->dateTime(),
         ];
     }
 }

@@ -27,7 +27,7 @@ class UrlController extends Controller
             //$request->session()->flash('error', 'Некоректный URL');
             return back()->withErrors($validator)->with('error', 'Некоректный URL');
         }
- 
+
         $url = $this->normalizeUrl($request);
         $updated_at = Carbon::now('Europe/Moscow');
         $created_at = Carbon::now('Europe/Moscow');
@@ -47,7 +47,7 @@ class UrlController extends Controller
      * @request - implements of request
      * return string
      */
-    private function normalizeUrl(Request $request):string
+    private function normalizeUrl(Request $request): string
     {
         ['scheme' => $scheme, 'host' => $host] = parse_url($request->input('url')['name']);
         return "{$scheme}://{$host}";
@@ -69,7 +69,7 @@ class UrlController extends Controller
         return true;
     }
     /**
-     * 
+     *
      */
     public function show()
     {
@@ -79,7 +79,7 @@ class UrlController extends Controller
         return view('chanks.show', compact('urls'));
     }
     /**
-     * 
+     *
      */
     public function site($id)
     {

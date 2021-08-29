@@ -24,3 +24,5 @@ lint:
 
 lint-fix:
 	composer phpcbf
+lint-psr:
+	composer exec --verbose phpcs -- --standard=PSR12 src bin
