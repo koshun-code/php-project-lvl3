@@ -11,7 +11,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class UrlController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request): object
     {
         $inputUrl = $request->input('url');
         $validator =  Validator::make($inputUrl, [
@@ -55,7 +55,7 @@ class UrlController extends Controller
     /**
      * Cheak url to unique in db
      */
-    private function isUniqueUrl($url)
+    private function isUniqueUrl(string $url): bool
     {
         $urls = DB::table('urls')
         ->select('name')
@@ -71,7 +71,7 @@ class UrlController extends Controller
     /**
      *
      */
-    public function show()
+    public function show(): object
     {
         $urls = DB::table('urls')->distinct('urls.id')->leftJoin('url_checks', 'urls.id', '=', 'url_checks.url_id')
         ->select('urls.id as id', 'name', 'url_checks.status_code as status_code', 'urls.updated_at as updated_at')
@@ -81,7 +81,7 @@ class UrlController extends Controller
     /**
      *
      */
-    public function site($id)
+    public function site(int $id): object
     {
         [$url] = DB::select('select * from urls where id = ?', [$id]);
         $checkedUrl = DB::select('select * from url_checks where url_id = ?', [$id]);

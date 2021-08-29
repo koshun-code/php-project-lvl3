@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (): Illuminate\View\View {
     return view('chanks.index');
 })->name('chanks.index');
 

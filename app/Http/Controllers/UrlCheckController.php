@@ -13,7 +13,7 @@ use Illuminate\Http\Client\ConnectionException;
 
 class UrlCheckController extends Controller
 {
-    public function index($id)
+    public function index(int $id): object
     {
         [$url] = DB::select("select * from urls where id = :id", ['id' => $id]);
         abort_unless($url, 404);
@@ -39,7 +39,7 @@ class UrlCheckController extends Controller
         }
         return null;
     }*/
-    private function getMetaData($url)
+    private function getMetaData(string $url): array
     {
         $response = HTTP::get($url);
         $statuseCode = $response->status();

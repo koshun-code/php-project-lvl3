@@ -18,8 +18,8 @@ class UrlChecksTest extends TestCase
      *
      * @return void
      */
-    protected $url;
-    protected $id;
+    protected string $url;
+    protected int $id;
 
     protected function setUp(): void
     {
@@ -31,7 +31,7 @@ class UrlChecksTest extends TestCase
             'created_at' => Carbon::now(),
         ]);
     }
-    public function testIndex()
+    public function testIndex(): void
     {
         $expected = [
             'url_id'   => $this->id,

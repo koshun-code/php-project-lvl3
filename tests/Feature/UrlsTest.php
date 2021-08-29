@@ -19,8 +19,8 @@ class UrlsTest extends TestCase
      *
      * @return void
      */
-    private $url;
-    private $id;
+    protected string $url;
+    protected int $id;
 
     protected function setUp(): void
     {
@@ -32,35 +32,35 @@ class UrlsTest extends TestCase
             'created_at' => Carbon::now(),
         ]);
     }
-    public function testExample()
+    public function testExample(): void
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
-    public function testIndex()
+    public function testIndex(): void
     {
         $response = $this->get(route('chanks.index'));
         $response->assertOk();
     }
-    public function testShow()
+    public function testShow(): void
     {
         $response = $this->get(route('urls.show'));
         $response->assertOk();
     }
-    public function testSite()
+    public function testSite(): void
     {
         $response = $this->get(route('urls.site', $this->id));
         $response->assertOk();
     }
-    public function testStore()
+    public function testStore(): void
     {
         $urlData = ['url[name]' => 'https://hexlet.io'];
         $response = $this->post(route('urls.store', $urlData));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
     }
-    public function testStoreEmpty()
+    public function testStoreEmpty(): void
     {
         $urlData = ['url[name]' => ''];
         $response = $this->post(route('urls.store', $urlData));
