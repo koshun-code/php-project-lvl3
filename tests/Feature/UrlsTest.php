@@ -18,13 +18,18 @@ class UrlsTest extends TestCase
      *
      * @return void
      */
-    private $urls;
+    private $url;
+    private $id;
 
     protected function setUp():void
     {
         parent::setUp();
-        $this->urls = Url::factory()->create();
-
+        $this->url = 'http://test.com';
+        $this->id = DB::table('urls')->insertGetId([
+            'name' => $this->url,
+            'updated_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+        ]);
     }
     public function test_example()
     {
@@ -44,12 +49,12 @@ class UrlsTest extends TestCase
     }
     public function testSite()
     {
-        $response = $this->get(route('urls.site', $this->urls['id']));
+        $response = $this->get(route('urls.site', $this->id));
         $response->assertOk();
     }
     public function testStore()
     {
-        $urlData = ['url[name]'=>$this->urls['name']];
+        $urlData = ['url[name]' => 'https://hexlet.io'];
         $response = $this->post(route('urls.store', $urlData));
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
@@ -58,21 +63,15 @@ class UrlsTest extends TestCase
     {
         $urlData = ['url[name]'=>''];
         $response = $this->post(route('urls.store', $urlData));
-        $response->assertSessionHasErrors();
+        $this->assertDatabaseMissing('urls', $urlData);
         $response->assertRedirect();
     }
-    public function testStoreExistLink()
+   /* public function testStoreExistLink()
     {
-        $url = DB::table('urls')
-        ->insertGetId([
-            'name' => 'http://test.com',
-            'updated_at' => Carbon::now(),
-            'created_at' => Carbon::now(),
-        ]);
         $curUrl = 'http://test.com';
         $response = $this->post(route('urls.store', $curUrl));
         //dd($response);
-        $response->assertSessionHasErrors();
+        //$response->assertSessionHasErrors();
         $response->assertRedirect();
         
     }
@@ -81,7 +80,7 @@ class UrlsTest extends TestCase
         $urlData = str_repeat('domain', 50);
         $url = "http://{$urlData}.com";
         $response = $this->post(route('urls.store', $url));
-        $response->assertSessionHasErrors();
+        $response->assertSessionHasErrors(['name']);
         $response->assertRedirect();
-    }
+    }*/
 }

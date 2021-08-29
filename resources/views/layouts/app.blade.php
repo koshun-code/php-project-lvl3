@@ -10,9 +10,6 @@
 
         <title>Анализатор страниц</title>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -39,7 +36,7 @@
                 </div>
             </nav>
         </header>
-        @include('flash::message')
+        @include('message')
         @yield('content')
 
         <footer class="border-top py-3 mt-5 flex-shrink-0">
@@ -49,5 +46,11 @@
                 </div>
             </div>
         </footer>
+        <!-- Scripts -->
+        <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+        </script>
     </body>
 </html>

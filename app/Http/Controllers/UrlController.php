@@ -15,15 +15,17 @@ class UrlController extends Controller
     {
         $inputUrl = $request->input('url');
         $validator =  Validator::make($inputUrl, [
-            'name' => 'required|max:255',
+            'name' => 'required|url|max:255',
         ]);
         /*
          $validate = $request->validate([
              'name' => 'required|url|max:255',
          ]);*/
+         //dd($validator->fails());
         if ($validator->fails()) {
-            flash('Некоректный Url')->error();
-            return back()->withErrors($validator);
+            //flash('Некоректный Url')->error();
+            //$request->session()->flash('error', 'Некоректный URL');
+            return back()->withErrors($validator)->with('error', 'Некоректный URL');
         }
  
         $url = $this->normalizeUrl($request);
@@ -32,11 +34,13 @@ class UrlController extends Controller
 
         if ($this->isUniqueUrl($url)) {
                 DB::insert('insert into urls (name, updated_at, created_at) values (?, ?, ?)', [$url, $updated_at, $created_at]);
-                flash('Ссылка добавлена!')->success();
-                return redirect()->route('urls.show');
+                //flash('Ссылка добавлена!')->success();
+               // $request->session()->flash('success', 'Ссылка добавлена');
+                return redirect()->route('urls.show')->with('success', 'Ссылка добавлена');
         } else {
-                flash('Такая ссылка уже есть')->warning();
-                return back()->withErrors($validator);
+                //flash('Такая ссылка уже есть')->warning();
+                //$request->session()->flash('warning', 'Такая ссылка уже есть');
+                return back()->with('warning', 'Такая ссылка уже есть');
         }
     }
     /**

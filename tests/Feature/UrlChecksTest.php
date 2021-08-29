@@ -33,9 +33,20 @@ class UrlChecksTest extends TestCase
     }
     public function testIndex()
     {
-        HTTP::fake([$this->url => HTTP::response()]);
+        $expected = [
+            'url_id'   => $this->id,
+            'status_code' => 200,
+            'keywords'    => 'keywords test fixture',
+            'h1'          => 'Header test fixtures',
+            'description' => 'description test fixture',
+        ];
+        $fixture = file_get_contents(__DIR__ .'/../fixtures/test.html');
+        if ($fixture === false) {
+            throw new \Exception("Somthing wrong with fixtures");   
+        }
+        HTTP::fake([$this->url => HTTP::response($fixture)]);
         $response = $this->post(route('urls.check', ['id' => $this->id]));
-        $response->assertRedirect();
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
     }
 }
