@@ -39,7 +39,7 @@
                 </div>
             </nav>
         </header>
-        @include('message')
+        @include('flash::message')
         @yield('content')
 
         <footer class="border-top py-3 mt-5 flex-shrink-0">

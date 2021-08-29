@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '157641e350f3ea6c1ff17f60df3edb2da6b70d17',
+    'reference' => '9a159fe568642707d3112ee9e74933e44e40ffa9',
     'name' => 'hexlet/code',
   ),
   'versions' => 
@@ -236,7 +236,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '157641e350f3ea6c1ff17f60df3edb2da6b70d17',
+      'reference' => '9a159fe568642707d3112ee9e74933e44e40ffa9',
     ),
     'illuminate/auth' => 
     array (
@@ -470,6 +470,15 @@ private static $installed = array (
       array (
         0 => '*',
       ),
+    ),
+    'laracasts/flash' => 
+    array (
+      'pretty_version' => '3.2',
+      'version' => '3.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '76c2e200498795bdbeda97b682536130316e8b97',
     ),
     'laravel/framework' => 
     array (

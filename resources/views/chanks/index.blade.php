@@ -9,6 +9,7 @@
                     <h1 class="display-3">Анализатор страниц</h1>
                     <p class="lead">Бесплатно проверяйте сайты на SEO пригодность</p>
 
+
                     {{Form::open(['url' => route('urls.store'), 'method' => 'POST', 'class' => 'd-flex justify-content-center'])}}
 
                     {{Form::text('url[name]', '', ['class' =>'form-control form-control-lg', 'placeholder' => 'https://www.example.com'])}}

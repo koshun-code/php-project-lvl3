@@ -14,22 +14,29 @@ class UrlController extends Controller
     public function store(Request $request)
     {
         $inputUrl = $request->input('url');
-        
-        $validator = Validator::make($inputUrl, [
-            'name' => 'required|max:255'
+        $validator =  Validator::make($inputUrl, [
+            'name' => 'required|max:255',
         ]);
-        if (!$validator->fails()) {
-            $url = $this->normalizeUrl($request);
-            $updated_at = Carbon::now('Europe/Moscow');
-            $created_at = Carbon::now('Europe/Moscow');
-            if ($this->isUniqueUrl($url)) {
+        /*
+         $validate = $request->validate([
+             'name' => 'required|url|max:255',
+         ]);*/
+        if ($validator->fails()) {
+            flash('Некоректный Url')->error();
+            return back()->withErrors($validator);
+        }
+ 
+        $url = $this->normalizeUrl($request);
+        $updated_at = Carbon::now('Europe/Moscow');
+        $created_at = Carbon::now('Europe/Moscow');
+
+        if ($this->isUniqueUrl($url)) {
                 DB::insert('insert into urls (name, updated_at, created_at) values (?, ?, ?)', [$url, $updated_at, $created_at]);
-                return redirect()->route('urls.show')->with('success', 'Cсылка добавлена')->withInput();
-            } else {
-                return back()->with('warning', 'Такая ссылка уже есть')->withInput();
-            }
+                flash('Ссылка добавлена!')->success();
+                return redirect()->route('urls.show');
         } else {
-            return back()->with('errors', 'Некоректный URL')->withInput();
+                flash('Такая ссылка уже есть')->warning();
+                return back()->withErrors($validator);
         }
     }
     /**
@@ -44,13 +51,13 @@ class UrlController extends Controller
     /**
      * Cheak url to unique in db
      */
-    private function isUniqueUrl($url):bool
+    private function isUniqueUrl($url)
     {
         $urls = DB::table('urls')
         ->select('name')
         ->get();
 
-        foreach($urls as $dbUrl) {
+        foreach ($urls as $dbUrl) {
             if ($dbUrl->name === $url) {
                 return false;
             }

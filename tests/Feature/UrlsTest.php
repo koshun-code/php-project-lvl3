@@ -51,19 +51,20 @@ class UrlsTest extends TestCase
     {
         $urlData = ['url[name]'=>$this->urls['name']];
         $response = $this->post(route('urls.store', $urlData));
-        $response->assertRedirect();
         $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
     }
     public function testStoreEmpty()
     {
         $urlData = ['url[name]'=>''];
         $response = $this->post(route('urls.store', $urlData));
-        $response->assertRedirect();
         $response->assertSessionHasErrors();
+        $response->assertRedirect();
     }
     public function testStoreExistLink()
     {
-        $url = DB::table('urls')->insertGetId([
+        $url = DB::table('urls')
+        ->insertGetId([
             'name' => 'http://test.com',
             'updated_at' => Carbon::now(),
             'created_at' => Carbon::now(),
